@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Patient</h4>
+</div>
+<form #patientDetailsForm="ngForm" novalidate>
+  <div class="modal-body">
+    <section class="content-margin-md">
+      <div>
+        <label>Name</label>
+        <input type="text" name="name" [(ngModel)]="patientDetails.name" />
+      </div>
+      <div>
+        <label>Date Of Birth</label>
+        <input
+          type="text"
+          name="dob"
+          [(ngModel)]="patientDetails.dateOfBirth"
+        />
+      </div>
+      <div>
+        <label>Address</label>
+        <textarea
+          name="address"
+          [(ngModel)]="patientDetails.address"
+        ></textarea>
+      </div>
+      <div>
+        <label>Phone</label>
+        <input type="text" name="phone" [(ngModel)]="patientDetails.phone" />
+      </div>
+    </section>
+  </div>
+</form>
+<div class="modal-footer">
+  <button
+    class="btn btn-secondary"
+    (cancelClick)="onCancel(patientDetailsForm)"
+  >
+    Cancel
+  </button>
+  <button
+    class="btn btn-primary"
+    type="submit"
+    (click)="onSave(patientDetailsForm)"
+  >
+    Save
+  </button>
+</div>
+
+<ng-template #saveToaster>
+  <div class="toast">
+    <div class="toast-body">Patient Saved successfully</div>
+  </div>
+</ng-template>
