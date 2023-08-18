@@ -1,13 +1,73 @@
-<ng-container *ngIf="patientDetails.length; else noPatientDetails">
-  <ag-grid-angular
+<div class="card m-5 p-3">
+  <!-- <ag-grid-angular
     style="width: 100%; height: 100%"
     class="ag-theme-alpine"
     [columnDefs]="columnDefs"
     [rowData]="patientDetails"
-  ></ag-grid-angular>
-  <div *ngFor="let patient of patientDetails">
-    {{ patient.name }}
+  ></ag-grid-angular> -->
+  <div class="card-header">
+    <h4>
+      Patient Details
+      <button
+        type="button"
+        class="btn btn-primary float-end"
+        (click)="onAddEdit()"
+      >
+        Add
+      </button>
+    </h4>
   </div>
-</ng-container>
+  <ng-container *ngIf="patientDetails?.length; else noPatientDetails">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date Of Birth</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patientDetails; let i = index">
+          <td>{{ patient.name | ellipsis }}</td>
+          <td>{{ patient.dateOfBirth | date: "longDate" }}</td>
+          <td>{{ patient.address }}</td>
+          <td>{{ patient.phone }}</td>
+          <td>{{ patient.email }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="onAddEdit(i)"
+            >
+              Edit
+            </button>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="onDelete(patient.id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
 
-<ng-template #noPatientDetails> No Patients Present </ng-template>
+  <ng-template #noPatientDetails> No Patients Present </ng-template>
+
+  <ng-template #addEditModal>
+    <app-add-edit-patient-details
+      [patientDetail]="patientDetail"
+      [mode]="mode"
+      (save)="onSave()"
+      (closeModal)="addEditModalRef?.hide()"
+    ></app-add-edit-patient-details>
+  </ng-template>
+</div>

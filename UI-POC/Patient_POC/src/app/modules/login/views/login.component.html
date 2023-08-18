@@ -1,0 +1,42 @@
+<div class="card m-5 p-3" style="width: 25rem">
+  <div class="card-header">
+    <h4>Login</h4>
+  </div>
+  <div class="card-body"></div>
+  <form #loginForm="ngForm">
+    <section class="content-margin-md">
+      <div class="row mb-3">
+        <div class="col">
+          <label>User Name</label>
+        </div>
+        <div class="col">
+          <input
+            type="text"
+            name="name"
+            placeholder="Username"
+            [(ngModel)]="loginCreds.userName"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <label>Password</label>
+        </div>
+        <div class="col">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            [(ngModel)]="loginCreds.password"
+          />
+        </div>
+      </div>
+    </section>
+    <button class="btn btn-primary" type="submit" (click)="onLogin()">
+      Login
+    </button>
+  </form>
+</div>
+
+<ng-template #invalidCredentials> UserName/Password is wrong </ng-template>

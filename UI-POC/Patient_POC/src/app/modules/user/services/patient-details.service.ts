@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { PatientDetails } from '../models/patient-details';
 import patientDetailsJson from 'src/assets/mockData/patient-details.json';
@@ -11,7 +10,7 @@ export class PatientDetailsService {
   private readonly baseUrl = 'assets/mockData/';
   patientDetails: PatientDetails[] = patientDetailsJson as PatientDetails[];
 
-  constructor(protected httpClient: HttpClient) {}
+  constructor() {}
 
   getAllPatients(): Observable<PatientDetails[]> {
     // const url = `${this.baseUrl}/patient-details.json`;
@@ -19,17 +18,22 @@ export class PatientDetailsService {
     return of(this.patientDetails);
   }
 
-  getPatientDetails(id: number): Observable<PatientDetails> {
-    // const url = `${this.baseUrl}/patient-details.json`;
-    // return this.httpClient.get<PatientDetails>(url);
-    return of(this.patientDetails.find((patient) => patient.id === id)!);
-  }
-
-  updatePatientDetails(PatientDetails: PatientDetails): Observable<boolean> {
+  updatePatientDetails(patientDetails: PatientDetails): Observable<boolean> {
+    const index = this.patientDetails.findIndex(
+      (item) => item.id === patientDetails.id
+    );
+    this.patientDetails[index] = patientDetails;
     return of(true);
   }
 
-  savePatientDetails(PatientDetails: PatientDetails): Observable<boolean> {
+  savePatientDetails(patientDetails: PatientDetails): Observable<boolean> {
+    this.patientDetails.push(patientDetails);
+    return of(true);
+  }
+
+  deletePatientDetails(id: number): Observable<boolean> {
+    const index = this.patientDetails.findIndex((item) => item.id === id);
+    this.patientDetails.splice(index, 1);
     return of(true);
   }
 }

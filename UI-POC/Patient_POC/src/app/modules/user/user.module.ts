@@ -5,6 +5,8 @@ import { AddEditPatientDetailsComponent } from './components/add-edit-patient-de
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { EllipsisPipe } from './pipes/ellipsis.pipe';
 
 const routes: Routes = [
   {
@@ -14,12 +16,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [PatientDetailsComponent, AddEditPatientDetailsComponent],
+  declarations: [PatientDetailsComponent, AddEditPatientDetailsComponent, EllipsisPipe],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
     FormsModule,
     AgGridModule,
+    ModalModule,
   ],
+  providers: [BsModalService],
 })
 export class UserModule {}
