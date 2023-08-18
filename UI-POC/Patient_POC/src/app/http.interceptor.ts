@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Interceptors implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler) {
+    console.log(request);
     return next.handle(request);
   }
 }

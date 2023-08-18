@@ -25,9 +25,9 @@
             "inlineStyleLanguage": "less",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/ag-grid-community/styles/ag-grid.min.css",
-              "src/styles.less"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -91,7 +91,7 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "less",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.less"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         }
